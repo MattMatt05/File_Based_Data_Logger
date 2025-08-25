@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 #include <random>
 
 using namespace std;
@@ -12,31 +11,22 @@ private:
     float pressure;
     float voltage;
 
-
     // MODIFIES: temperature
-    float setTemperature(float temperature)
+    void setTemperature(float temperature)
     {
         this->temperature = temperature;
     }
 
     // MODIFIES: pressure
-    float setPressure(float pressure)
+    void setPressure(float pressure)
     {
         this->pressure = pressure;
     }
 
     // MODIFIES: voltage
-    float setVoltage(float voltage)
+    void setVoltage(float voltage)
     {
         this->voltage = voltage;
-    }
-
-
-public:
-    // The default constructor
-    SensorReading()
-    {
-        generateRandomData();
     }
 
     // MODIFIES: temperature, pressure, voltage
@@ -57,5 +47,30 @@ public:
         // Voltage: 3.0-3.6V
         uniform_real_distribution<float> volt_dist(3.0, 3.6);
         voltage = volt_dist(gen);
+    }
+
+public:
+    // The default constructor
+    SensorReading()
+    {
+        generateRandomData();
+    }
+
+    // EFFECTS: returns the temperature
+    float getTemperature()
+    {
+        return temperature;
+    }
+
+    // EFFECTS: returns the pressure
+    float getPressure()
+    {
+        return pressure;
+    }
+
+    // EFFECTS: returns the voltage
+    float getVoltage()
+    {
+        return voltage;
     }
 };
