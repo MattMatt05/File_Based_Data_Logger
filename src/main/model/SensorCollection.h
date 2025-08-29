@@ -3,11 +3,11 @@
 #include <chrono>
 #include <thread>
 
-#include "SensorReading.cpp"
+#include "SensorReading.h"
 
 using namespace std;
 
-// This class serves as a collection of sensor readings which provides important statistics.
+// This header class serves as a collection of sensor readings which provides important statistics.
 class SensorCollection
 {
 private:
@@ -18,7 +18,6 @@ private:
     // EFFECTS: adds new a sensorReading
     void addSensorReading(SensorReading sensorReading)
     {
-        sensorReadingList.push_back(sensorReading);
     }
 
 public:
@@ -31,11 +30,5 @@ public:
     // EFFECTS: simulates the inflow of sensor data, waits 3 seconds before collecting a sample;
     void simulateSensorReading()
     {
-        while (continueReading)
-        {
-            SensorReading sr;
-            addSensorReading(sr);
-            this_thread::sleep_for(chrono::seconds(3));
-        }
     }
 };
