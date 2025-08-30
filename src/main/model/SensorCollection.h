@@ -1,34 +1,25 @@
+#ifndef SENSORCOLLECTION_H
+#define SENSORCOLLECTION_H
+
 #include <iostream>
-#include <string>
+#include <vector>
 #include <chrono>
 #include <thread>
-
 #include "SensorReading.h"
 
-using namespace std;
+// Avoid `using namespace std` in headers to prevent polluting global namespace
 
-// This header class serves as a collection of sensor readings which provides important statistics.
-class SensorCollection
-{
+using namespace std;
+class SensorCollection {
 private:
     vector<SensorReading> sensorReadingList;
     bool continueReading = true;
 
-    // MODIFIES: sensorReadingList
-    // EFFECTS: adds new a sensorReading
-    void addSensorReading(SensorReading sensorReading)
-    {
-    }
+    void addSensorReading(SensorReading sensorReading);  // Declaration only
 
 public:
-    SensorCollection()
-    {
-        simulateSensorReading();
-    }
-
-    // MODIFIES: sensorReadingList
-    // EFFECTS: simulates the inflow of sensor data, waits 3 seconds before collecting a sample;
-    void simulateSensorReading()
-    {
-    }
+    SensorCollection();  // Default constructor
+    void simulateSensorReading();
 };
+
+#endif

@@ -1,76 +1,53 @@
-#include <iostream>
+#include "SensorReading.h"
 #include <random>
+#include <iostream>
 
 using namespace std;
-// This class represents a sample point
-// SensorReading is a class that represents a sample from a sensor reading.
-class SensorReading
+void SensorReading::setTemperature(float temp)
 {
-private:
-    float temperature;
-    float pressure;
-    float voltage;
+    temperature = temp;
+}
 
-    // MODIFIES: temperature
-    void setTemperature(float temperature)
-    {
-        this->temperature = temperature;
-    }
+void SensorReading::setPressure(float pres)
+{
+    pressure = pres;
+}
 
-    // MODIFIES: pressure
-    void setPressure(float pressure)
-    {
-        this->pressure = pressure;
-    }
+void SensorReading::setVoltage(float volt)
+{
+    voltage = volt;
+}
 
-    // MODIFIES: voltage
-    void setVoltage(float voltage)
-    {
-        this->voltage = voltage;
-    }
+void SensorReading::generateRandomData()
+{
+    random_device rd;
+    mt19937 gen(rd());
 
-    // MODIFIES: temperature, pressure, voltage
-    // EFFECTS: generates random samples that are within range standard range for temperature, pressure, and voltage
-    void generateRandomData()
-    {
-        random_device random;
-        mt19937 gen(random());
+    uniform_real_distribution<> tempDist(20.0, 30.0);
+    uniform_real_distribution<> presDist(950.0, 1050.0);
+    uniform_real_distribution<> voltDist(3.0, 5.0);
 
-        // Temperature: 18-28°C
-        uniform_real_distribution<float> temp_dist(18.0, 28.0);
-        temperature = temp_dist(gen);
+    setTemperature(static_cast<float>(tempDist(gen)));
+    setPressure(static_cast<float>(presDist(gen)));
+    setVoltage(static_cast<float>(voltDist(gen)));
+}
 
-        // Pressure: 1000-1030 hPa
-        uniform_real_distribution<float> press_dist(1000.0, 1030.0);
-        pressure = press_dist(gen);
+SensorReading::SensorReading()
+{
+    generateRandomData();
+}
 
-        // Voltage: 3.0-3.6V
-        uniform_real_distribution<float> volt_dist(3.0, 3.6);
-        voltage = volt_dist(gen);
-    }
+float SensorReading::getTemperature() const
+{
+    return temperature;
+}
 
-public:
-    // The default constructor
-    SensorReading()
-    {
-        generateRandomData();
-    }
+float SensorReading::getPressure() const
+{
+    return pressure;
+}
 
-    // EFFECTS: returns the temperature
-    float getTemperature()
-    {
-        return temperature;
-    }
-
-    // EFFECTS: returns the pressure
-    float getPressure()
-    {
-        return pressure;
-    }
-
-    // EFFECTS: returns the voltage
-    float getVoltage()
-    {
-        return voltage;
-    }
-};
+float SensorReading::getVoltage() const
+{
+    return voltage;
+}

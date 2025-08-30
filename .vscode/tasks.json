@@ -1,19 +1,15 @@
 {
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "Build with cl.exe",
-      "type": "shell",
-      "command": "cl.exe",
-      "args": [
-        "/EHsc",
-        "*.cpp"
-      ],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "problemMatcher": ["$msCompile"]
-    }
-  ]
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build C++",
+            "type": "shell",
+            "command": "${workspaceFolder}/build.bat",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"]
+        }
+    ]
 }

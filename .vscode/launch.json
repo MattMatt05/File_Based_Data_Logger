@@ -1,16 +1,16 @@
 {
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "Run C++ Program",
-      "type": "cppvsdbg",
-      "request": "launch",
-      "program": "${workspaceFolder}\\src\\main\\UI\\main.exe",
-      "args": [],
-      "stopAtEntry": false,
-      "cwd": "${workspaceFolder}",
-      "environment": [],
-      "console": "integratedTerminal"
-    }
-  ]
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run C++",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/main/UI/main.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "preLaunchTask": "Build C++"
+        }
+    ]
 }

@@ -1,41 +1,19 @@
-#include <iostream>
-#include <string>
-#include <chrono>
-#include <thread>
-
-#include "SensorReading.cpp"
+#include "SensorCollection.h"
 
 using namespace std;
+SensorCollection::SensorCollection() {
+    simulateSensorReading();
+}
 
-// This class serves as a collection of sensor readings which provides important statistics.
-class SensorCollection
-{
-private:
-    vector<SensorReading> sensorReadingList;
-    bool continueReading = true;
+void SensorCollection::addSensorReading(SensorReading sensorReading) {
+    sensorReadingList.push_back(sensorReading);
+}
 
-    // MODIFIES: sensorReadingList
-    // EFFECTS: adds new a sensorReading
-    void addSensorReading(SensorReading sensorReading)
-    {
-        sensorReadingList.push_back(sensorReading);
+void SensorCollection::simulateSensorReading() {
+    while (continueReading) {
+        SensorReading sr;
+        addSensorReading(sr);
+        this_thread::sleep_for(std::chrono::seconds(1));
+        cout << "Pressure: " << sr.getPressure() << "  Temp: " << sr.getTemperature() << "  Voltage: " << sr.getVoltage() << endl;
     }
-
-public:
-    SensorCollection()
-    {
-        simulateSensorReading();
-    }
-
-    // MODIFIES: sensorReadingList
-    // EFFECTS: simulates the inflow of sensor data, waits 3 seconds before collecting a sample;
-    void simulateSensorReading()
-    {
-        while (continueReading)
-        {
-            SensorReading sr;
-            addSensorReading(sr);
-            this_thread::sleep_for(chrono::seconds(3));
-        }
-    }
-};
+}
